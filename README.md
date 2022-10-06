@@ -1,8 +1,9 @@
 # DOOM 2016 Trainer
 
-[![GitHub release](https://img.shields.io/github/release/btbd/DOOM_Trainer.svg)](https://github.com/btbd/DOOM_Trainer/releases/latest)
+Speedrun trainer for DOOM 2016 that should work with any version.
 
-Trainer for DOOM 2016 that should work with any version.
+[](images/Screenshot1.jpg)
+[](images/Screenshot2.jpg)
 
 ## Help
 

@@ -9,6 +9,9 @@
 #include <sys/stat.h>
 #include <Dbghelp.h>
 #include <Commctrl.h>
+#include <string>
+#include <fstream>
+#include <vector>
 
 #include "resource.h"
 #include "memory.h"
@@ -23,10 +26,14 @@
 
 #define ClearKeybind(k, i) Keybind((short *)&k, 0, 0, 0); SetTextFromKeybind(hDlg, i, k); active_id = 0; memset(&keybind, 0, sizeof(keybind)); SetKeybinds(&keybinds);
 
+using std::string;
+
 typedef struct {
-	short forward[3], backward[3], left[3], right[3], up[3], down[3], increase[3], decrease[3], god[3], ammo[3], fly[3], timer[3], time_increase[3], time_decrease[3], time_reset[3];
-	short save[5][3];
-	short load[5][3];
+	short forward[4], backward[4], left[4], right[4], up[4], down[4], increase[4], decrease[4], god[4], ammo[4], fly[4], timer[4], time_increase[4], time_decrease[4], time_reset[4], rewind[4], kill[4], doublejump[4];
+	short save[5][4];
+	short load[5][4];
+	short test_save[1][4];
+	short test_load[1][4];
 } KEYBINDS;
 
 typedef struct {
@@ -35,9 +42,17 @@ typedef struct {
 	char camera[8];
 } SAVE;
 
+typedef struct {
+	char player[24];
+	float fz;
+	char camera[8];
+} REWIND;
+
 void Update();
 void Listener();
-void SetKeybinds(KEYBINDS *k);
+void SetKeybinds(KEYBINDS* k);
+string SetConfigPath(char* path, string directory = "", string filename = "");
+HWND MakeWindowFromCenter(HWND hWndtemp, int offsetx = 0, int offsety = 0);
 KEYBINDS GetKeybinds();
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam);
